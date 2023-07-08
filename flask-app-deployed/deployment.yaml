@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hello-world-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: my-hello-world-app
+  template:
+    metadata:
+      labels:
+        app: my-hello-world-app
+    spec:
+      containers:
+        - name: hello-world
+          image: johnjoj/flask-hello-world:v1
+          ports:
+            - containerPort: 81
+              protocol: TCP

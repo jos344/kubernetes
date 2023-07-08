@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-world-service
+spec:
+  selector:
+    app: my-hello-world-app
+  ports:
+      # Port accessible inside cluster
+    - port: 8080
+      # Port to foward to containers in pod
+      targetPort: 81
+      name: portname
+      # Port accessible outside cluster
+      nodePort: 30001
+  type: LoadBalancer
+  externalIPs:
+    - 192.168.49.2
